@@ -59,4 +59,4 @@ displayJson <- function(blList, wlList) {
   #return (myVector)
 }
 #display(bl,wl)
-displayJson("KO during media consumption at leisure,KO Consumption", "Age Nets,KO Consumption")
+#displayJson("KO during media consumption at leisure,KO Consumption", "Age Nets,KO Consumption")
