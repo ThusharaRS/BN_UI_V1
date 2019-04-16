@@ -1,5 +1,5 @@
 #'Creating json object for BN
-#'@param blList
+#'@param blListWList
 #'@return value
 #'@export
 
