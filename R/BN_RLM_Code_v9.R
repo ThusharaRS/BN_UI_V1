@@ -1,46 +1,21 @@
-#'Creating json object for BN
-
+#'Json without paramenter
 #'@return value
 #'@export
 
-
-# rm(list=ls())
-
-display <- function(){
-# install.packages('bnlearn', dependencies=TRUE, repos='http://cran.rstudio.com/')
-# install.packages("GGally")
-# install.packages("network")
-# install.packages("sna")
-# install.packages("RColorBrewer")
-# install.packages("intergraph")
-# install.packages("qgraph")
-# install.packages("bnviewer")
-# install.packages("devtools")
-# devtools::install_github("robson-fernandes/bnviewer")
-# install.packages(c('devtools','bnviewer'))
-# install.packages("lazyeval")
-Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape", "bnviewer","rjson","readr")
-lapply(Packages, library, character.only = TRUE)
-
-#RLM_Data <- read.csv("Data\\Respondent Level Data_Consumption Segments.csv")
+display <-function(){
+  
+  Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson","readr")
+  lapply(Packages, library, character.only = TRUE)
 
 
-data(RLM_Data)
+  RLM_Data_4vs5_0 <- filter(RLM_Data, RLM_Data$KO_Consumption >= 4)[,c(201,26:39,194:200,209:358)]
+  RLM_Data_4vs5_1 <- sapply(RLM_Data_4vs5_0,as.factor)
+  RLM_Data_4vs5_2 <- as.data.frame(RLM_Data_4vs5_1)
+  RLM_Data_4vs5_3 <- RLM_Data_4vs5_2[,c(107,23,12,16,121,151,163,47,21,78,74,1)]
+  RLM_Data_4vs5_4 <- rename(RLM_Data_4vs5_3, c("ST_MainSecOccasionNets17_KO_Prop_4vs5" = "KO during media consumption at leisure","ST_CompanionNets1_KO_Prop_4vs5" = "KO alone or by myself","Q28Q30Loop_11_Q28Q3001" = "Imagery KO is more refreshing than other soft drinks","QCNets_New" = "Age Nets","ST_Q26_10_TB_Prop_4vs5" = "Any Bev to renew my energy","ST_Q26_2_TB_Prop_4vs5" = "Any Bev to wake me up","ST_Q26_6_TB_Prop_4vs5" = "Any Bev to ensure i drink enough each day","ST_DaypartHighLevelNets_4_KO_Prop_4vs5" = "KO in evening","QF_New" = "Income Level","ST_MainSecOccasionNets07_SSD_Regular_Prop_4vs5" = "SSD eating dinner away","ST_MainSecOccasionNets06_KO_Prop_4vs5" = "KO eating lunch away","KO_Consumption_4_5" = "KO Consumption"))
+ 
 
-RLM_Data_4vs5_0 <- filter(RLM_Data, RLM_Data$KO_Consumption >= 4)[,c(201,26:39,194:200,209:358)]
-RLM_Data_4vs5_1 <- sapply(RLM_Data_4vs5_0,as.factor)
-RLM_Data_4vs5_2 <- as.data.frame(RLM_Data_4vs5_1)
-RLM_Data_4vs5_3 <- RLM_Data_4vs5_2[,c(107,23,12,16,121,151,163,47,21,78,74,1)]
-RLM_Data_4vs5_4 <- rename(RLM_Data_4vs5_3, c("ST_MainSecOccasionNets17_KO_Prop_4vs5" = "KO during media consumption at leisure","ST_CompanionNets1_KO_Prop_4vs5" = "KO alone or by myself","Q28Q30Loop_11_Q28Q3001" = "Imagery KO is more refreshing than other soft drinks","QCNets_New" = "Age Nets","ST_Q26_10_TB_Prop_4vs5" = "Any Bev to renew my energy","ST_Q26_2_TB_Prop_4vs5" = "Any Bev to wake me up","ST_Q26_6_TB_Prop_4vs5" = "Any Bev to ensure i drink enough each day","ST_DaypartHighLevelNets_4_KO_Prop_4vs5" = "KO in evening","QF_New" = "Income Level","ST_MainSecOccasionNets07_SSD_Regular_Prop_4vs5" = "SSD eating dinner away","ST_MainSecOccasionNets06_KO_Prop_4vs5" = "KO eating lunch away","KO_Consumption_4_5" = "KO Consumption"))
-
-### Ploychoric Correlation
-# Daily_Matrix <- hetcor(RLM_Data_4vs5_4)
-# Daily_Matrix1 <- as.data.frame(Daily_Matrix$correlations)
-# write.csv(Daily_Matrix1, "D:/Respondent Level Modeling_Bev360 CBL/4. Analytics/Path Analysis/Bayesian Network/BN_Model_Correlation.csv")
-
-#### score-based structure learning algorithms - HILL CLIMBING
-
-BL <- matrix(c(## KO during media consumption at leisure
+  BL <- matrix(c(## KO during media consumption at leisure
   # "KO alone or by myself", "KO during media consumption at leisure",
   #"Imagery KO is more refreshing than other soft drinks", "KO during media consumption at leisure",
   #"Age Nets", "KO during media consumption at leisure",
@@ -207,22 +182,19 @@ WL <- matrix(c("KO during media consumption at leisure", "KO Consumption",
 ),
 ncol = 2, byrow = TRUE)
 # WL
-
-BN_RLM_HC_9 <- hc(RLM_Data_4vs5_4, score = "aic", whitelist = WL, blacklist = BL)
-BN_RLM_HC_9
+ 
+  
+  BN_RLM_HC_9 <- hc(RLM_Data_4vs5_4, score = "aic", whitelist = WL, blacklist = BL)
 
 Score_BN <- score(BN_RLM_HC_9,RLM_Data_4vs5_4)
-Score_BN
 
-acyclic(BN_RLM_HC_9, directed = FALSE, debug = FALSE)
+  acyclic(BN_RLM_HC_9, directed = FALSE, debug = FALSE)
 directed(BN_RLM_HC_9)
 Arcs_DF <- as.data.frame(arcs(BN_RLM_HC_9))
 Arcs_DF$Unique <- paste(Arcs_DF$from,Arcs_DF$to,sep = "-")
-
-Boot_Strength_8 <- boot.strength(RLM_Data_4vs5_4, cluster = NULL, R = 100, m = 50, algorithm = "hc", algorithm.args = list(), cpdag = TRUE, debug = FALSE)
-
-
-Boot_Strength_DF <- data.frame(From = Boot_Strength_8$from, To = Boot_Strength_8$to,
+  
+  Boot_Strength_8 <- boot.strength(RLM_Data_4vs5_4, cluster = NULL, R = 100, m = 50, algorithm = "hc", algorithm.args = list(), cpdag = TRUE, debug = FALSE)
+ Boot_Strength_DF <- data.frame(From = Boot_Strength_8$from, To = Boot_Strength_8$to,
                                strength = Boot_Strength_8$strength,
                                direction = Boot_Strength_8$direction
 )
@@ -230,8 +202,6 @@ Boot_Strength_DF <- data.frame(From = Boot_Strength_8$from, To = Boot_Strength_8
 Boot_Strength_DF$Unique <- paste(Boot_Strength_DF$From,Boot_Strength_DF$To,sep = "-")
 Arcs_BN <- merge(Arcs_DF,Boot_Strength_DF,by = "Unique")
 request.body <- toJSON(Arcs_BN[,-c(1:3,7)])
+  return(request.body)
 
-
-return(request.body )
 }
-display()
