@@ -11,6 +11,9 @@ displayJson <- function(blList, wlList) {
   rm(list=ls())
   Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson")
   lapply(Packages, library, character.only = TRUE)
+  
+  myVector_WL<-unlist(strsplit(wlList,","))
+  myVector_BL<-unlist(strsplit(blList,","))
  
 
   #Data <- read.csv("D:/Bayesian Tool/2. Clean Data/Respondent Level Data_Consumption Segments.csv")
