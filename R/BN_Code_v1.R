@@ -60,5 +60,8 @@ displayJson <- function(variableSelected,blList, wlList) {
   return (request.body)
   #return (myVector)
 }
-#display(bl,wl)
-#displayJson("KO during media consumption at leisure,KO Consumption", "Age Nets,KO Consumption")
+#blList<-"KO during media consumption at leisure,KO Consumption,Any Bev to renew my energy,Income Level"
+#wlList<-"Age Nets,KO Consumption"
+#variableSelected<-"KO during media consumption at leisure,KO alone or by myself,Imagery - KO is more refreshing than other soft drinks,Age Nets,Any Bev to renew my energy,Any Bev to wake me up,Any Bev to ensure i drink enough each day,KO in evening,Income Level,Regular SSD while eating dinner away,KO while eating lunch away,KO Consumption"
+
+#display(variableSelected,blList,wlList)
