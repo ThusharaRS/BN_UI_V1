@@ -11,15 +11,10 @@ displayJson <- function(variableSelected,blList, wlList) {
   rm(list=ls())
   Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson")
   lapply(Packages, library, character.only = TRUE)
-  
-  blList<-"KO during media consumption at leisure,KO Consumption"
-  wlList<-"Age Nets,KO Consumption"
+
   myVector_WL<-unlist(strsplit(wlList,","))
   myVector_BL<-unlist(strsplit(blList,","))
- 
 
-  #Data <- read.csv("D:/Bayesian Tool/2. Clean Data/Respondent Level Data_Consumption Segments.csv")
-  #Mapping <- read.csv("D:/Bayesian Tool/2. Clean Data/SOB Mapping File.csv")
 
   Data_0 <- filter(Data, Data$KO_Consumption_4_5 != 99)
   names(Data_0) = Mapping$New_Variable[match(names(Data_0), Mapping$Old_Variable)]
