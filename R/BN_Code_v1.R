@@ -6,7 +6,7 @@
 
 
 
-displayJson <- function(blList, wlList) {
+displayJson <- function(variableSelected,blList, wlList) {
   
   rm(list=ls())
   Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson")
@@ -27,8 +27,10 @@ displayJson <- function(blList, wlList) {
   Data_1 <- sapply(Data_0,as.factor)
   Data_2 <- as.data.frame(Data_1)
   ############## Data_3 needs to fed in based on the selection in the front end
-  Data_3 <- Data_2[,c(108, 24, 12, 16, 122, 152, 164, 48, 21, 79, 75, 23)]
-
+ # Data_3 <- Data_2[,c(108, 24, 12, 16, 122, 152, 164, 48, 21, 79, 75, 23)]
+  myVector_var<-unlist(strsplit(variableSelected,","))
+  Data_3 <- Data_2[, c(myVector_var)]
+  
   # Black Listing
   BL <- matrix(c(myVector_BL),
                ncol = 2, byrow = TRUE)
