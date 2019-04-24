@@ -8,6 +8,11 @@
 
 displayJson <- function(variableSelected,blList, wlList) {
   
+  variableSelected<-"Regular SSD while eating dinner away,KO with friend,Imagery - KO is unique and different from other soft drinks,KO while watching tv at home,Regular SSD alone or by myself,Age Nets,Any Bev while at work,Any Bev to celebrate with others"
+wlList<-"Regular SSD while eating dinner away,KO with friend,KO with friend,Imagery - KO is unique and different from other soft drinks"
+blList<-"KO while watching tv at home,Age Nets,Regular SSD alone or by myself,Age Nets,Any Bev while at work,Any Bev to celebrate with others"
+
+  
   rm(list=ls())
   Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson")
   lapply(Packages, library, character.only = TRUE)
