@@ -23,5 +23,5 @@ blList<-"KO while watching tv at home,Age Nets,Regular SSD alone or by myself,Ag
   myVector_BL<-unlist(strsplit(blList,","))
   myVector_var<-unlist(strsplit(variableSelected,","))
   
-  return (variableSelected)
+  return (myVector_var)
 }
