@@ -1,5 +1,5 @@
 #'Creating json object for BN
-#'@param blListWList
+#'@param variableSelectedblListWList
 #'@return value
 #'@export
 
