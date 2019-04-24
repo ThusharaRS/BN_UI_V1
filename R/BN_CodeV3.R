@@ -6,7 +6,7 @@
 
 
 
-displayJson <- function(variableSelected,blList, wlList) {
+displayParameter <- function(variableSelected,blList, wlList) {
   
   rm(list=ls())
   Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson")
