@@ -15,9 +15,13 @@
 
 hello <- function(variableSelected,blList, wlList) {
    
-   variableSelected<-"Regular SSD while eating dinner away,KO with friend,Imagery - KO is unique and different from other soft drinks,KO while watching tv at home,Regular SSD alone or by myself,Age Nets,Any Bev while at work,Any Bev to celebrate with others"
+variableSelected<-"Regular SSD while eating dinner away,KO with friend,Imagery - KO is unique and different from other soft drinks,KO while watching tv at home,Regular SSD alone or by myself,Age Nets,Any Bev while at work,Any Bev to celebrate with others"
 wlList<-"Regular SSD while eating dinner away,KO with friend,KO with friend,Imagery - KO is unique and different from other soft drinks"
 blList<-"KO while watching tv at home,Age Nets,Regular SSD alone or by myself,Age Nets,Any Bev while at work,Any Bev to celebrate with others"
 
-   return (variableSelected)
+  myVector_WL<-unlist(strsplit(wlList,","))
+  myVector_BL<-unlist(strsplit(blList,","))
+  myVector_var<-unlist(strsplit(variableSelected,","))
+  
+  return (variableSelected)
 }
