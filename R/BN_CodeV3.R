@@ -10,7 +10,7 @@
 
 displayParameter <- function(variableSelected,blList, wlList) {
    
-  return (variableSelected)
+  return ("variableSelected")
   #return (myVector)
 }
 #blList<-"KO during media consumption at leisure,KO Consumption,Any Bev to renew my energy,Income Level"
