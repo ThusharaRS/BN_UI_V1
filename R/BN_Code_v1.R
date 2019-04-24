@@ -20,7 +20,7 @@ blList<-"KO while watching tv at home,Age Nets,Regular SSD alone or by myself,Ag
   myVector_WL<-unlist(strsplit(wlList,","))
   myVector_BL<-unlist(strsplit(blList,","))
 
-
+return myVector_WL
   Data_0 <- filter(Data, Data$KO_Consumption_4_5 != 99)
   names(Data_0) = Mapping$New_Variable[match(names(Data_0), Mapping$Old_Variable)]
 
@@ -62,7 +62,7 @@ blList<-"KO while watching tv at home,Age Nets,Regular SSD alone or by myself,Ag
   Arcs_BN <- merge(Arcs_DF,Boot_Strength_DF,by = "Unique")
   request.body <- toJSON(Arcs_BN[,-c(1:3,7)])
 
-  return (request.body)
+ # return (request.body)
   #return (myVector)
 }
 #blList<-"KO during media consumption at leisure,KO Consumption,Any Bev to renew my energy,Income Level"
