@@ -29,5 +29,5 @@ blList<-"KO while watching tv at home,Age Nets,Regular SSD alone or by myself,Ag
    Data_0 <- filter(Data, Data$KO_Consumption_4_5 != 99)
    #names(Data_0) = Mapping$New_Variable[match(names(Data_0), Mapping$Old_Variable)]
    #new_var<-names(Data_0)
-  return ( Data_0r)
+  return ( Data_0)
 }
