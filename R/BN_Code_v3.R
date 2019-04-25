@@ -10,7 +10,7 @@ Packages <- c("plyr", "dplyr", "tidyr", "bnlearn", "reshape","rjson")
 lapply(Packages, library, character.only = TRUE)
 getJson <- function(variableSelected,blList, wlList) {
 
-
+  myVector_var<-unlist(strsplit(variableSelected,","))
   myVector_WL<-unlist(strsplit(wlList,","))
   myVector_BL<-unlist(strsplit(blList,","))
 
@@ -20,7 +20,7 @@ getJson <- function(variableSelected,blList, wlList) {
   Data_1 <- sapply(Data_0,as.factor)
   Data_2 <- as.data.frame(Data_1)
 
-  myVector_var<-unlist(strsplit(variableSelected,","))
+  
   Data_3 <- Data_2[, c(myVector_var)]
 
   ## Black Listing
